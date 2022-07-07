@@ -1,6 +1,6 @@
 # dart_vue
 
-This is trying to build vue-like reactive system in Dart and finally use in Flutter.
+This is trying to build vue-like reactive system in Dart and finally to use in Flutter.
 
 Flutter has [`ValueNotifier`](https://api.flutter.dev/flutter/foundation/ValueNotifier-class.html) and [`ChangeNotifier`](https://api.flutter.dev/flutter/foundation/ValueNotifier-class.html) which in my opinion, is similar to reactive system built by vue.
 
@@ -79,6 +79,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  // define ref
   final RefImp<int> _counter = RefImp(0);
 
   MyApp({Key? key}) : super(key: key);
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
         body: CounterBody(counterRef: _counter),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            // change ref value
             _counter.value++;
           },
           child: const Icon(Icons.add),
@@ -112,6 +114,7 @@ class CounterBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text('Current counter value:'),
+          // auto rebuild widget
           DartVueWidget<CounterState>(setup: () {
             return CounterState(ref: counterRef.value);
           }, render: (ctx, state, child) {

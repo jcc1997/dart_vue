@@ -1,12 +1,24 @@
 import 'package:flutter/widgets.dart';
 import 'dart_vue.dart';
 
-class DartVueWidget<T> extends StatefulWidget {
+abstract class DartVueWidget<T> extends StatefulWidget {
+  final Widget? child;
+  abstract final T Function() setup;
+  abstract final Widget Function(BuildContext context, T state, Widget? child)
+      render;
+
+  const DartVueWidget({super.key, this.child});
+
+  @override
+  State<DartVueWidget<T>> createState() => _DartVueState<T>();
+}
+
+class DartVueComponent<T> extends DartVueWidget<T> {
   final Widget? child;
   final T Function() setup;
   final Widget Function(BuildContext context, T state, Widget? child) render;
 
-  const DartVueWidget(
+  const DartVueComponent(
       {super.key, required this.setup, required this.render, this.child});
 
   @override

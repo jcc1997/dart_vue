@@ -44,7 +44,7 @@ class CounterBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text('Current counter value:'),
-          DartVueWidget<CounterState>(setup: () {
+          DartVueComponent<CounterState>(setup: () {
             return CounterState(ref: counterRef.value);
           }, render: (ctx, state, child) {
             return Text('${state.ref}');

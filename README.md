@@ -1,24 +1,14 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# dart_vue
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+This is trying to build vue-like reactive system in Dart and finally use in Flutter.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+Flutter has [`ValueNotifier`](https://api.flutter.dev/flutter/foundation/ValueNotifier-class.html) and [`ChangeNotifier`](https://api.flutter.dev/flutter/foundation/ValueNotifier-class.html) which in my opinion, is similar to reactive system built by vue.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Inspired by [`reactivue`](https://github.com/antfu/reactivue), this package built [`@vue/reactivity`](https://github.com/vuejs/core/tree/main/packages/reactivity) in Dart and use it into Flutter.
 
-## Features
+## [WIP]Features
 
-try build `@vue/reactivity` in Dart.
-
-### ref
+### [WIP]ref
 
 - [x] ref
 - [ ] shallowRef
@@ -30,7 +20,7 @@ try build `@vue/reactivity` in Dart.
 - [ ] customRef
 - [ ] triggerRef
 
-### reactive
+### [WIP]reactive
 
 - [ ] reactive
 - [ ] readonly
@@ -43,11 +33,11 @@ try build `@vue/reactivity` in Dart.
 - [ ] markRaw
 - [ ] toRaw
 
-### computed
+### [WIP]computed
 
 - [ ] computed
 
-### effect
+### [WIP]effect
 
 - [ ] effect
 - [ ] stop
@@ -57,17 +47,15 @@ try build `@vue/reactivity` in Dart.
 - [ ] pauseTracking
 - [ ] resetTracking
 
-### effectScope
+### [WIP]effectScope
 
 - [x] effectScope,
 - [x] getCurrentScope,
 - [x] onScopeDispose
 
-### Widget
+### [WIP]widget
 
-inspired by [reactivue](https://github.com/antfu/reactivue)
-
-- [ ] DartVueWidget
+- [x] DartVueWidget
 
 ## Getting started
 
@@ -138,4 +126,4 @@ class CounterBody extends StatelessWidget {
 
 ## Additional information
 
-no
+I am a noob in Dart, so welcome PR.

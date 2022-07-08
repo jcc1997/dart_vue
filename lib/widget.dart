@@ -14,12 +14,13 @@ abstract class DartVueWidget<T> extends StatefulWidget {
 }
 
 class DartVueComponent<T> extends DartVueWidget<T> {
-  final Widget? child;
+  @override
   final T Function() setup;
+  @override
   final Widget Function(BuildContext context, T state, Widget? child) render;
 
   const DartVueComponent(
-      {super.key, required this.setup, required this.render, this.child});
+      {super.key, required this.setup, required this.render});
 
   @override
   State<DartVueWidget<T>> createState() => _DartVueState<T>();
@@ -35,7 +36,7 @@ class _DartVueState<T> extends State<DartVueWidget<T>> {
     var effect = ReactiveEffect(() {
       _state = widget.setup();
       setState(() {
-        // The listenable's state is our build state, and it changed already.
+        // it changed already.
       });
     });
     effect.run();
@@ -45,4 +46,10 @@ class _DartVueState<T> extends State<DartVueWidget<T>> {
   @override
   Widget build(BuildContext context) =>
       widget.render(context, _state!, widget.child);
+
+  @override
+  void dispose() {
+    super.dispose();
+    _effect!.stop();
+  }
 }

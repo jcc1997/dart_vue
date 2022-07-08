@@ -1,19 +1,20 @@
 import 'dep.dart';
 import 'effect.dart';
 
-class RefComputedImpl {}
-
-class RefImp<T> implements RefBase {
+class RefImpl<T> implements Ref<T> {
   T _value;
+  @override
   Dep? dep;
 
-  RefImp(this._value);
+  RefImpl(this._value);
 
+  @override
   get value {
     trackRefValue(this);
     return this._value;
   }
 
+  @override
   set value(newVal) {
     if (newVal != _value) {
       _value = newVal;
@@ -22,20 +23,20 @@ class RefImp<T> implements RefBase {
   }
 }
 
-abstract class RefBase<T> {
+abstract class Ref<T> {
   Dep? dep;
   T value;
-  RefBase(this.value);
+  Ref(this.value);
 }
 
-void trackRefValue(RefBase<dynamic> ref) {
+void trackRefValue(Ref<dynamic> ref) {
   if (shouldTrack && activeEffect != null) {
     ref.dep ??= createDep();
     trackEffects(ref.dep!);
   }
 }
 
-void triggerRefValue(RefBase<dynamic> ref, [dynamic newVal]) {
+void triggerRefValue(Ref<dynamic> ref, [dynamic newVal]) {
   if (ref.dep != null) {
     triggerEffects(ref.dep!);
   }

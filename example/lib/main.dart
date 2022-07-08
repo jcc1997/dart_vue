@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final RefImp<int> _counter = RefImp(0);
+  final Ref<int> _counter = RefImpl(0);
 
   MyApp({Key? key}) : super(key: key);
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 class CounterBody extends StatelessWidget {
   const CounterBody({Key? key, required this.counterRef}) : super(key: key);
 
-  final RefImp<int> counterRef;
+  final Ref<int> counterRef;
 
   @override
   Widget build(BuildContext context) {

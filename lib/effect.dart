@@ -1,6 +1,7 @@
 import 'effect_scope.dart';
 import 'dep.dart';
 import 'ref.dart';
+import 'computed.dart';
 
 ReactiveEffect? activeEffect;
 
@@ -11,7 +12,7 @@ class ReactiveEffect<T> {
   final T Function() fn;
   final EffectScheduler? scheduler;
   var deferStop = false;
-  RefComputedImpl? computed;
+  ComputedRefImpl? computed;
 
   ReactiveEffect(this.fn, [this.scheduler, EffectScope? scope]) {
     recordEffectScope(this, scope);

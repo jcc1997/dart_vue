@@ -35,7 +35,7 @@ Inspired by [`reactivue`](https://github.com/antfu/reactivue), this package buil
 
 ### [WIP]computed
 
-- [ ] computed
+- [x] computed
 
 ### [WIP]effect
 

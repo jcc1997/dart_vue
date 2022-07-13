@@ -44,13 +44,32 @@ class CounterBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text('Current counter value:'),
-          DartVueComponent<CounterState>(setup: () {
-            return CounterState(ref: counterRef.value);
-          }, render: (ctx, state, child) {
-            return Text('${state.ref}');
-          })
+          // DartVueComponent<CounterState>(setup: () {
+          //   return CounterState(ref: counterRef.value);
+          // }, render: (ctx, state, child) {
+          //   return Text('${state.ref}');
+          // })
+          CounterWidget(
+            counterRef: counterRef,
+          )
         ],
       ),
     );
+  }
+}
+
+class CounterWidget extends DartVueWidget<CounterState> {
+  const CounterWidget({Key? key, required this.counterRef}) : super(key: key);
+
+  final Ref<int> counterRef;
+
+  @override
+  CounterState setup() {
+    return CounterState(ref: counterRef.value);
+  }
+
+  @override
+  Widget render(BuildContext context, CounterState state, Widget? child) {
+    return Text('${state.ref}');
   }
 }

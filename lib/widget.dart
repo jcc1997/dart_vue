@@ -3,24 +3,31 @@ import 'dart_vue.dart';
 
 abstract class DartVueWidget<T> extends StatefulWidget {
   final Widget? child;
-  abstract final T Function() setup;
-  abstract final Widget Function(BuildContext context, T state, Widget? child)
-      render;
-
   const DartVueWidget({super.key, this.child});
+
+  T setup();
+  Widget render(BuildContext context, T state, Widget? child);
 
   @override
   State<DartVueWidget<T>> createState() => _DartVueState<T>();
 }
 
 class DartVueComponent<T> extends DartVueWidget<T> {
+  final T Function() _setup;
   @override
-  final T Function() setup;
-  @override
-  final Widget Function(BuildContext context, T state, Widget? child) render;
+  T setup() {
+    return this._setup();
+  }
 
-  const DartVueComponent(
-      {super.key, required this.setup, required this.render});
+  final Widget Function(BuildContext context, T state, Widget? child) _render;
+  @override
+  Widget render(BuildContext context, T state, Widget? child) {
+    return _render(context, state, child);
+  }
+
+  const DartVueComponent({super.key, required setup, required render})
+      : _setup = setup,
+        _render = render;
 
   @override
   State<DartVueWidget<T>> createState() => _DartVueState<T>();
